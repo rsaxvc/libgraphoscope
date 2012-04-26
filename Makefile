@@ -1,22 +1,28 @@
-CFLAGS=-O0 -g
+CFLAGS=-O0 -g -Wall
+CXXFLAGS=$(CFLAGS)
+LDFLAGS=-lSDL -lSDL_mixer
 SOURCES=`ls *.cpp *.c`
-
-all: .depend test_circle test_line
+BUILDS=test_polygon test_SDL_mixer
+all: .depend $(BUILDS)
 
 .depend:
 	fastdep $(SOURCES) > .depend
 
 -include .depend
 
-test_line:\
-	test_line.o\
+libgraphoscope.o:\
+	audio_buffer.o\
 	graphoscope.o
+	ld -r $^ -o $@
+	
+test_polygon:\
+	test_polygon.o\
+	libgraphoscope.o
 	$(CXX) -o $@ $(CXXFLAGS) $(LDFLAGS) $^
 
-test_circle:\
-	test_circle.o\
-	graphoscope.o
+test_SDL_mixer:\
+	test_SDL_mixer.o
 	$(CXX) -o $@ $(CXXFLAGS) $(LDFLAGS) $^
 
 clean:
-	rm -f *.o .depend
+	rm -f *.o .depend $(BUILDS)

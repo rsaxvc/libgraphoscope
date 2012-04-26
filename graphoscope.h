@@ -7,13 +7,19 @@
 extern "C"{
 #endif
 
-typedef void * gos_handle;
-gos_handle gos_open( int width, int height, double max_x, double max_y, double fps, double samplerate );
-void gos_draw_line( gos_handle, int x1, int y1, int x2, int y2 );
-void gos_draw_circle( gos_handle, int x, int y, int r );
+struct gos_type;
 
-typedef void (*gos_callback_func)( double * gos_samples_left, double * gos_samples_right, size_t count );
-void gos_render( gos_callback_func );
+typedef gos_type * gos_handle;
+
+void gos_powerup(void);//must be called before other GOS functions, and after SDL_init()
+void gos_powerdown(void);//must be called after all other GOS functions, and before SDL_Quit()
+
+gos_handle gos_open();
+void gos_line( gos_handle, double x1, double y1  );
+void gos_move( gos_handle, double x1, double y1  );
+void gos_render( gos_handle );//draws current frame
+void gos_wait_for_buffer( gos_handle );
+
 void gos_close( gos_handle * );
 
 #ifdef __cplusplus
