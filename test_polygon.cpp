@@ -7,7 +7,7 @@
 	#define M_PI           3.14159265358979323846
 #endif
 
-#define RADIUS 500
+#define RADIUS 20000
 #define SQRT2_2 0.707107
 
 int main(int num_args, const char * const args[] )
@@ -37,11 +37,11 @@ while(1)
 	{
 	gos_wait_for_buffer( handle );
 	printf("ping\n");
-	for( size_t i = 0; i < num_edges; ++i )
+	for( size_t i = 0; i <= num_edges; ++i )
 		{
 		gos_line( handle,
-			RADIUS * cos( i * M_PI * 2 / num_edges ),
-			RADIUS * sin( i * M_PI * 2 / num_edges )
+			RADIUS * sin( (float)i * M_PI * 2 / (float)num_edges ),
+			RADIUS * cos( (float)i * M_PI * 2 / (float)num_edges )
 			);
 		}
 	gos_render( handle );
