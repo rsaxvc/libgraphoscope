@@ -1,0 +1,7 @@
+building:
+	make
+
+test:
+	Attach audio outputs to oscilloscope in XY-mode
+	./test_polygon 5
+

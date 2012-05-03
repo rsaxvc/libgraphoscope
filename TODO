@@ -1,7 +1,0 @@
-todo:rendering engine
-
-This is an extension of the traveling salesman problem. The scope
-will draw tiny traces between graphics primitives, so we need to
-keep the downtime as short as possible - to achieve this we want
-to sort the draw order to minimize average distance between primitives.
-Also, we can convert circles into a series of arcs to assist this.
