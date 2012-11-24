@@ -74,7 +74,6 @@ void gos_move( gos_handle h, float x, float y )
 process_events();
 h->cur_x = x;
 h->cur_y = y;
-printf("move:(%f,%f)\n",x,y);
 }
 
 gos_handle gos_open()
@@ -101,7 +100,6 @@ h->cur_x = x;
 h->cur_y = y;
 
 #undef line
-printf("line:(%f,%f)\n",x,y);
 }
 
 static void finish_draw(void)

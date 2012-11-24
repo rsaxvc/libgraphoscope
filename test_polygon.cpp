@@ -35,7 +35,6 @@ gos_move( handle, 0.0f, 1.0f );
 while(1)
 	{
 	gos_wait_for_buffer( handle );
-	printf("ping\n");
 	for( size_t i = 0; i <= num_edges; ++i )
 		{
 		gos_line( handle,
