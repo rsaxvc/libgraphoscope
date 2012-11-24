@@ -5,12 +5,12 @@
 #include "audio_buffer.h"
 #include "graphoscope_config.h"
 
-static double dist( const pt & p1, const pt & p2 )
+static float dist( const pt & p1, const pt & p2 )
 {
 return sqrt( (p2.x-p1.x)*(p2.x-p1.x) + (p2.y-p1.y)*(p2.y-p1.y) );
 }
 
-static double CLIP( double value, double min, double max )
+static float CLIP( float value, int min, int max )
 {
 if( value < min )return min;
 if( value > max )return max;
@@ -45,15 +45,15 @@ for( size_t i = 0; i < lines.size(); ++i )
 		}
 
 	//Add 1 to ensure we don't go above slew rate
-	double angle = atan2( p2.y-p1.y, p2.x-p1.x );
-	double distance = dist( p1, p2 );
+	float angle = atan2( p2.y-p1.y, p2.x-p1.x );
+	float distance = dist( p1, p2 );
 	size_t projection_count =  ( distance + SLEW_RATE ) / SLEW_RATE;
 	for( size_t j = 0; j <= projection_count; ++j )
 		{
 		pt temp=
 			{
-			p1.x + cos(angle) * ( j * distance ) / projection_count,
-			p1.y + sin(angle) * ( j * distance ) / projection_count
+			p1.x + cosf(angle) * ( j * distance ) / projection_count,
+			p1.y + sinf(angle) * ( j * distance ) / projection_count
 			};
 		insert( temp );
 		}

@@ -24,6 +24,8 @@
 #include "line.h"
 #include "audio_buffer.h"
 
+#define WORLD_SCALAR 30000.0f
+
 static void play_next_buffer( int channel );
 
 struct gos_type
@@ -31,8 +33,8 @@ struct gos_type
 	std::vector<line> lines;
 
 	//user supplied
-	double cur_x;
-	double cur_y;
+	float cur_x;
+	float cur_y;
 
 	//rendering info
 	int channel;
@@ -51,10 +53,10 @@ struct gos_type
 //only support one for now, later use a std::map to convert SDL channel idx to gos_type ptr
 static gos_type * global_gos = NULL;
 
-void gos_move( gos_handle h, double x, double y )
+void gos_move( gos_handle h, float x, float y )
 {
-h->cur_x = x;
-h->cur_y = y;
+h->cur_x = x * WORLD_SCALAR;
+h->cur_y = y * WORLD_SCALAR;
 }
 
 audio_buffer_type * generate_silence( size_t count )
@@ -96,8 +98,10 @@ global_gos = handle;
 return handle;
 }
 
-void gos_line( gos_handle h, double x, double y )
+void gos_line( gos_handle h, float x, float y )
 {
+x *= WORLD_SCALAR;
+y *= WORLD_SCALAR;
 line l={{x,y},{h->cur_x,h->cur_y}};
 h->cur_x = x;
 h->cur_y = y;
