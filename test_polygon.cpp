@@ -37,10 +37,12 @@ while(1)
 	gos_wait_for_buffer( handle );
 	for( size_t i = 0; i <= num_edges; ++i )
 		{
-		gos_line( handle,
-			sin( (float)i * M_PI * 2 / (float)num_edges ),
-			cos( (float)i * M_PI * 2 / (float)num_edges )
-			);
+		float x,y;
+		x = sin( (float)i * M_PI * 2 / (float)num_edges ) * .85;
+		y = cos( (float)i * M_PI * 2 / (float)num_edges ) * .85;
+		gos_line( handle, x, y );
+		gos_line_rel( handle,  0.1f, 0.0f );
+		gos_move_rel( handle, -0.1f, 0.0f );
 		}
 	gos_render( handle );
 	}
