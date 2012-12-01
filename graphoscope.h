@@ -49,6 +49,11 @@ This sets the current position to specified position.
 void gos_move( gos_handle, float x1, float y1  );
 
 /*------------------------------------------------------
+This gets the current cursor position
+------------------------------------------------------*/
+void gos_read( gos_handle, float &x, float &y );
+
+/*------------------------------------------------------
 Compute and display the output frame. This begins looping
 the current frame until another comes up.
 ------------------------------------------------------*/

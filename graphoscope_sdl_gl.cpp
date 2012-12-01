@@ -76,6 +76,12 @@ h->cur_x = x;
 h->cur_y = y;
 }
 
+void gos_read( gos_handle h, float &x, float &y )
+{
+x = h->cur_x;
+y = h->cur_y;
+}
+
 gos_handle gos_open()
 {
 gos_type * handle;

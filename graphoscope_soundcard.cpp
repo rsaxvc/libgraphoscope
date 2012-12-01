@@ -59,6 +59,12 @@ h->cur_x = x * WORLD_SCALAR;
 h->cur_y = y * WORLD_SCALAR;
 }
 
+void gos_read( gos_handle h, float &x, float &y )
+{
+x = h->cur_x;
+y = h->cur_y;
+}
+
 audio_buffer_type * generate_silence( size_t count )
 {
 assert( count > 0 );
